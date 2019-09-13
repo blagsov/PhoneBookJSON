@@ -83,14 +83,18 @@ public class Main {
             else if (!phoneBook.containsKey(command) && isName(command) && !isPhone(command)) {
                 System.out.println("The name is not in the database! Please, enter the number:");
                 String number = reader.readLine().trim();
-                phoneBook.put(command, number);
+                if (NUMBER.matcher(number).matches()) {
+                    phoneBook.put(command, number);
+                } else System.out.println("Error!");
             }
             //--------------------------------------------------------------------------------------------------
             //случай, когда введенного номера нет, добавление его и имени
             else if (!phoneBook.containsValue(command) && isPhone(command) && !isName(command)) {
                 System.out.println("The number is not in the database! Please, enter the name");
                 String name = reader.readLine().trim();
-                phoneBook.put(name, command);
+                if (NAME.matcher(name).matches()) {
+                    phoneBook.put(name, command);
+                } else System.out.println("Error!");
             }
             //--------------------------------------------------------------------------------------------------
             //остановка программы при вводе "выход"
